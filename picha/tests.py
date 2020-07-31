@@ -15,8 +15,10 @@ class ImagesTest(TestCase):
         self.new_picture = Images(image_link='images/picture.jpeg', title='Image title', description='sth random', category=self.new_category, location=self.new_location)
         self.new_picture.save()
 
-    def test_instance(self):
+    def test_instances(self):
         self.assertTrue(isinstance(self.new_picture,Images))
+        self.assertTrue(isinstance(self.new_category, Categories))
+        self.assertTrue(isinstance(self.new_location, Locations))
 
     def tearDown(self):
         Categories.objects.all().delete()
