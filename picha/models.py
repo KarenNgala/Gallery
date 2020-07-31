@@ -32,6 +32,11 @@ class Images(models.Model):
         retrieved = Images.objects.get(id = id)
         return retrieved
 
+    @classmethod
+    def search_image(cls, category):
+        retrieved = Images.objects.get(category=category)
+        return retrieved
+
 
 class Categories(models.Model):
     name = models.CharField(max_length=30)
