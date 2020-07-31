@@ -13,7 +13,9 @@ class ImagesTest(TestCase):
         self.new_location.save_location()
 
         self.new_picture = Images(image_link='images/picture.jpeg', title='Image title', description='sth random', category=self.new_category, location=self.new_location)
+        self.new_picture.save_image()
         self.another_picture = Images(image_link='images/photo.jpg', title='Another title', description='sth else more random', category=self.new_category, location=self.new_location)
+        self.another_picture.save_image()
 
     def tearDown(self):
         Categories.objects.all().delete()
@@ -26,15 +28,22 @@ class ImagesTest(TestCase):
         self.assertTrue(isinstance(self.new_location, Locations))
 
     def test_save_image(self):
-        self.new_picture.save_image()
-        self.another_picture.save_image()
         self.assertTrue(len(Images.objects.all()) == 2)
 
     def test_delete_image(self):
-        self.new_picture.save_image()
-        self.another_picture.save_image()
         self.new_picture.delete_image()
         self.assertTrue(len(Images.objects.all()) == 1)
+
+    @classmethod
+    def test_update_image(cls):
+        try:
+            to_update = Images.objects.get(title = 'Another title')
+            to_update.image_link = 'images/updated.png'
+            to_update.save()
+            print(to_update.image_link) #new image url
+            print(to_update.title) #old image title
+        except Images.DoesNotExist:
+            print('Image you specified does not exist')
 
 
 class CategoryTest(TestCase):
@@ -44,6 +53,9 @@ class CategoryTest(TestCase):
     def test_save_category(self):
         self.new_category.save_category()
         self.assertTrue(len(Categories.objects.all()) > 0)     
+
+
+
 
 
 class LocationTest(TestCase):
