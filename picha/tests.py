@@ -34,24 +34,19 @@ class ImagesTest(TestCase):
         self.new_picture.delete_image()
         self.assertTrue(len(Images.objects.all()) == 1)
 
-    @classmethod
-    def test_update_image(cls):
-        try:
-            to_update = Images.objects.get(title = 'Another title')
-            to_update.image_link = 'images/updated.png'
-            to_update.save()
-            print(to_update.image_link) #new image url
-            print(to_update.title) #old image title
-        except Images.DoesNotExist:
-            print('Image you specified does not exist')
+    def test_update_image(self):
+        update_test = Images.update_image('Another title', 'images/updated.png')
+        self.assertEqual(update_test.image_link, 'images/updated.png')
+        print(update_test.image_link)
+        print(update_test.title)
 
 
 class CategoryTest(TestCase):
     def setUp(self):
         self.new_category = Categories(name='categoryA')
+        self.new_category.save_category()
 
     def test_save_category(self):
-        self.new_category.save_category()
         self.assertTrue(len(Categories.objects.all()) == 1)     
 
     def test_delete_category(self):
@@ -59,18 +54,28 @@ class CategoryTest(TestCase):
         self.new_category.delete_category()
         self.assertTrue(len(Categories.objects.all()) == 0)    
 
+    def test_update_category(self):
+        update_cat = Categories.update_category('categoryA', 'differentCat')
+        self.assertEqual(update_cat.name, 'differentCat')
+        print(update_cat.name)
+
 
 
 
 class LocationTest(TestCase):
     def setUp(self):
         self.new_location = Locations(city='lost city', country='unknown')
+        self.new_location.save_location()
 
     def test_save_location(self):
-        self.new_location.save_location()
         self.assertTrue(len(Locations.objects.all()) == 1)     
 
     def test_delete_location(self):
         self.new_location.save_location()
         self.new_location.delete_location()
         self.assertTrue(len(Locations.objects.all()) == 0)
+
+    def test_update_location(self):
+        update_locale = Locations.update_location('unknown', 'paperTown')
+        self.assertEqual(update_locale.city, 'paperTown')
+        print(update_locale.city, update_locale.country)
