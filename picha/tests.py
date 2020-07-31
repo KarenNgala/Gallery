@@ -13,6 +13,7 @@ class ImagesTest(TestCase):
         self.new_location.save_location()
 
         self.new_picture = Images(image_link='images/picture.jpeg', title='Image title', description='sth random', category=self.new_category, location=self.new_location)
+        self.another_picture = Images(image_link='images/photo.jpg', title='Another title', description='sth else more random', category=self.new_category, location=self.new_location)
 
     def tearDown(self):
         Categories.objects.all().delete()
@@ -26,7 +27,14 @@ class ImagesTest(TestCase):
 
     def test_save_image(self):
         self.new_picture.save_image()
-        self.assertTrue(len(Images.objects.all()) > 0)     
+        self.another_picture.save_image()
+        self.assertTrue(len(Images.objects.all()) == 2)
+
+    def test_delete_image(self):
+        self.new_picture.save_image()
+        self.another_picture.save_image()
+        self.new_picture.delete_image()
+        self.assertTrue(len(Images.objects.all()) == 1)
 
 
 class CategoryTest(TestCase):
