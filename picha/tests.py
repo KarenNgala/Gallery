@@ -37,8 +37,10 @@ class ImagesTest(TestCase):
     def test_update_image(self):
         update_test = Images.update_image('Another title', 'images/updated.png')
         self.assertEqual(update_test.image_link, 'images/updated.png')
-        print(update_test.image_link)
-        print(update_test.title)
+
+    def test_get_image_by_id(self):
+        obtained_image = Images.get_image_by_id(self.another_picture.id)
+        print(obtained_image.title)
 
 
 class CategoryTest(TestCase):
@@ -57,7 +59,6 @@ class CategoryTest(TestCase):
     def test_update_category(self):
         update_cat = Categories.update_category('categoryA', 'differentCat')
         self.assertEqual(update_cat.name, 'differentCat')
-        print(update_cat.name)
 
 
 
@@ -78,4 +79,3 @@ class LocationTest(TestCase):
     def test_update_location(self):
         update_locale = Locations.update_location('unknown', 'paperTown')
         self.assertEqual(update_locale.city, 'paperTown')
-        print(update_locale.city, update_locale.country)
