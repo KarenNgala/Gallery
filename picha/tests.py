@@ -52,8 +52,12 @@ class CategoryTest(TestCase):
 
     def test_save_category(self):
         self.new_category.save_category()
-        self.assertTrue(len(Categories.objects.all()) > 0)     
+        self.assertTrue(len(Categories.objects.all()) == 1)     
 
+    def test_delete_category(self):
+        self.new_category.save_category()
+        self.new_category.delete_category()
+        self.assertTrue(len(Categories.objects.all()) == 0)    
 
 
 
@@ -64,4 +68,9 @@ class LocationTest(TestCase):
 
     def test_save_location(self):
         self.new_location.save_location()
-        self.assertTrue(len(Locations.objects.all()) > 0)     
+        self.assertTrue(len(Locations.objects.all()) == 1)     
+
+    def test_delete_location(self):
+        self.new_location.save_location()
+        self.new_location.delete_location()
+        self.assertTrue(len(Locations.objects.all()) == 0)
