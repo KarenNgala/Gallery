@@ -11,12 +11,18 @@ class Images(models.Model):
     def __str__(self):
         return self.title
 
+    def save_image(self):
+        self.save()
+
 
 class Categories(models.Model):
     name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.name
+
+    def save_category(self):
+        self.save()
 
 
 class Locations(models.Model):
@@ -25,3 +31,6 @@ class Locations(models.Model):
 
     def __str__(self):
         return self.city
+
+    def save_location(self):
+        self.save()
