@@ -8,17 +8,13 @@ class ImagesTest(TestCase):
     def setUp(self):
         self.new_category = Categories(name='testing')
         self.new_category.save_category()
-        self.another_category = Categories(name='cat2')
-        self.another_category.save_category()
-
+        
         self.new_location = Locations(city='Nairobi', country='Kenya')
         self.new_location.save_location()
-        self.another_location = Locations(city='Kisumu', country='Kenya')
-        self.another_location.save_location()
-
+        
         self.new_picture = Images(image_link='images/picture.jpeg', title='Image title', description='sth random', category=self.new_category, location=self.new_location)
         self.new_picture.save_image()
-        self.another_picture = Images(image_link='images/photo.jpg', title='Another title', description='sth else more random', category=self.another_category, location=self.another_location)
+        self.another_picture = Images(image_link='images/photo.jpg', title='Another title', description='sth else more random', category=self.new_category, location=self.new_location)
         self.another_picture.save_image()
 
     def tearDown(self):
@@ -39,7 +35,7 @@ class ImagesTest(TestCase):
         self.assertTrue(len(Images.objects.all()) == 1)
 
     def test_update_image(self):
-        update_test = Images.update_image('Another title', 'images/updated.png')
+        update_test = self.new_picture.update_image('images/updated.png')
         self.assertEqual(update_test.image_link, 'images/updated.png')
 
     def test_get_image_by_id(self):
@@ -48,7 +44,11 @@ class ImagesTest(TestCase):
 
     def test_search_image(self):
         obtained_image = Images.search_image(self.new_picture.category)
-        print(obtained_image.category)
+        print(obtained_image) #todo: reference individual instances
+
+    def test_filter_by_location(self):
+        obtained_image = Images.filter_by_location(self.another_picture.location)
+        print(obtained_image)
 
 
 

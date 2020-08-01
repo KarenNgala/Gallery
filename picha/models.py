@@ -17,14 +17,12 @@ class Images(models.Model):
     def delete_image(self):
         self.delete()
 
-    @classmethod
-    def update_image(cls, search_term , new_link):
+    def update_image(self, new_url):
         try:
-            to_update = Images.objects.get(title = search_term)
-            to_update.image_link = new_link
-            to_update.save()
-            return to_update
-        except Images.DoesNotExist:
+            self.image_link = new_url
+            self.save()
+            return self
+        except self.DoesNotExist:
             print('Image you specified does not exist')
 
     @classmethod
@@ -33,8 +31,13 @@ class Images(models.Model):
         return retrieved
 
     @classmethod
-    def search_image(cls, category):
-        retrieved = Images.objects.get(category=category)
+    def search_image(cls, cat):
+        retrieved = cls.objects.filter(category__name__contains=cat) #images assoc w/ this cat
+        return retrieved #list of instances
+
+    @classmethod
+    def filter_by_location(cls ,location):
+        retrieved = Images.objects.filter(location__city__contains=location)
         return retrieved
 
 
