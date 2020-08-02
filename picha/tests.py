@@ -38,13 +38,17 @@ class ImagesTest(TestCase):
         update_test = self.new_picture.update_image('images/updated.png')
         self.assertEqual(update_test.image_link, 'images/updated.png')
 
+    def test_get_all(self):
+        pictures = Images.get_all()
+        # print(pictures)
+
     def test_get_image_by_id(self):
         obtained_image = Images.get_image_by_id(self.another_picture.id)
-        print(obtained_image.title)
+        # print(obtained_image.title)
 
     def test_search_image(self):
         obtained_image = Images.search_image(self.new_picture.category)
-        print(obtained_image) #todo: reference individual instances
+        # print(obtained_image) #todo: reference individual instances
 
     def test_filter_by_location(self):
         obtained_image = Images.filter_by_location(self.another_picture.location)

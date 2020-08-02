@@ -3,4 +3,15 @@
 <!--  -->
 {% block content %} {{block.super}}
 <p>Gallery works!</p>
+<div class="container">
+    {% for item in pictures %}
+    <div class="row">
+        <p>{{item.title}}</p>
+    </div>
+    {% empty %}
+    <div class="row">
+        <h2 class="text-center"> No items to display </h2>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
