@@ -41,7 +41,8 @@ img {
 .form-control,
 .modal-body,
 .modal-footer,
-.modal-header {
+.modal-header,
+.btn {
     font-size: 15px;
 }
 

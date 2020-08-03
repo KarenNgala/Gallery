@@ -21,7 +21,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                     <div class="modal-content popup">
                         <div class="modal-header">
-                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close
+                            <button type="button" data-dismiss="modal">Close
                         </div>
                         <div class="modal-body text-center">
                             <h4 class="modal-title" id="imageheader">{{item.title}}</h4>
@@ -33,9 +33,8 @@
                             </ul>
                         </div>
                         <div class="modal-footer">
-                            <input class="form-control" type="text" value="https://la-galerie.herokuapp.com/{{image.image_link.url}}">
-                            <button  type="button" value="https://la-galarie.herokuapp.com{{image.image_link.url}}"  onclick="copyLink(this.value)" class="btn btn-outline-success my-2 my-sm-0 link-btn">Copy Link</button>
-                            </button>
+                            <input type="text" value="{{item.image_link.url}}" id="myInput">
+                            <button onclick="myFunction()" onmouseout="outFunc()" data-toggle="tooltip" title="copied!">Copy text</button>
                         </div>
                     </div>
                 </div>
