@@ -42,7 +42,8 @@ img {
 .modal-body,
 .modal-footer,
 .modal-header,
-.btn {
+.dropdown-toggle,
+.dropdown-item {
     font-size: 15px;
 }
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Images
+from .models import Images, Locations
 
 # Create your views here.
 def homepage(request):
@@ -19,3 +19,11 @@ def search(request):
     else:
         message = 'You have not searched any term'
         return render(request, 'search.html', {'message':message})
+
+def location_names(request):
+    locations = Locations.get_all()
+    return render(request, 'navbar.html, gallery.html', {'locations':locations})
+
+def location(request,locale):
+    images = Images.filter_by_location(locale)
+    return render(request, 'location.html', {'images':images})

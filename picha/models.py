@@ -92,3 +92,8 @@ class Locations(models.Model):
             return to_update
         except Locations.DoesNotExist:
             print('Location you specified does not exist')
+
+    @classmethod
+    def get_all(cls):
+        cities = Locations.objects.all()
+        return cities

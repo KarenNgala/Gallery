@@ -92,3 +92,7 @@ class LocationTest(TestCase):
     def test_update_location(self):
         update_locale = Locations.update_location('unknown', 'paperTown')
         self.assertEqual(update_locale.city, 'paperTown')
+
+    def test_get_all(self):
+        locations = Locations.get_all()
+        print(locations)
