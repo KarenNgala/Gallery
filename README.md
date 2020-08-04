@@ -1,6 +1,5 @@
 # K's Gallery
 
-
 A virtual gallery of images that interest me, using django
 
 ## Getting Started
@@ -8,7 +7,7 @@ A virtual gallery of images that interest me, using django
 To get a copy of the project up and running on your local machine for development and testing purposes, **clone** this repository into a **virtual environment** and install the package manager, **pip**.
 See deployment for notes on how to deploy the project on a live system.
 
-##****# Prerequisites
+### Prerequisites
 
 Use the package manager pip to install all project requirements. 
 ```sh
