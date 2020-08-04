@@ -7,7 +7,7 @@ urlpatterns=[
     url('^$', views.homepage, name='landing'),
     url('^gallery/', views.gallery, name='gallery'),
     url('^search/', views.search, name='search'),
-    url('^location/', views.location, name='location'),
+    url('^location/(?P<locale>\w+)/', views.location, name='location'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

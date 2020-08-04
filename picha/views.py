@@ -7,7 +7,8 @@ def homepage(request):
 
 def gallery(request):
     pictures = Images.get_all()
-    return render(request, 'gallery.html', {'pictures': pictures})
+    locations = Locations.get_all()
+    return render(request, 'gallery.html', {'pictures': pictures, 'locations':locations})
 
 def search(request):
     if 'category' in request.GET and request.GET['category']:
@@ -20,10 +21,6 @@ def search(request):
         message = 'You have not searched any term'
         return render(request, 'search.html', {'message':message})
 
-def location_names(request):
-    locations = Locations.get_all()
-    return render(request, 'navbar.html, gallery.html', {'locations':locations})
-
 def location(request,locale):
     images = Images.filter_by_location(locale)
-    return render(request, 'location.html', {'images':images})
+    return render(request, 'location.html', {'results':images})
